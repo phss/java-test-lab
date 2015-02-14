@@ -16,18 +16,17 @@ public class QuickSort implements SortingAlgorithm {
     }
 
     private int partition(int[] elements, int lowIndex, int highIndex) {
-        int partitionIndex = highIndex;
-        int firstHigh = lowIndex;
+        int partitionIndex = lowIndex;
 
         for (int i = lowIndex; i < highIndex; i++) {
-            if (elements[i] < elements[partitionIndex]) {
-                swap(elements, firstHigh, i);
-                firstHigh += 1;
+            if (elements[i] < elements[highIndex]) {
+                swap(elements, partitionIndex, i);
+                partitionIndex += 1;
             }
         }
-        swap(elements, partitionIndex, firstHigh);
+        swap(elements, highIndex, partitionIndex);
 
-        return firstHigh;
+        return partitionIndex;
     }
 
     private void swap(int[] elements, int i, int j) {
