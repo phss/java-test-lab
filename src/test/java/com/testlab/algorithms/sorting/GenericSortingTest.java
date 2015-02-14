@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.lessThan;
 
 public class GenericSortingTest {
 
-    private final SortingAlgorithm sorter = new CheatingSort();
+    private final SortingAlgorithm sorter = new SelectionSort();
 
     @Test
     public void sortSmallList() throws Exception {
