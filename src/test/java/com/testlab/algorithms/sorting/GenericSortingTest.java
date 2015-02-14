@@ -1,9 +1,8 @@
 package com.testlab.algorithms.sorting;
 
+import com.testlab.algorithms.Utils;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -37,7 +36,7 @@ public class GenericSortingTest {
     @Test
     public void sortLargeRandomList() throws Exception {
         int listSize = 100000000;
-        int[] elements = randomIntList(listSize, 30071979);
+        int[] elements = Utils.randomIntList(listSize, 30071979);
 
 
         double elapsedTime = inplaceSortAndTime(elements);
@@ -55,14 +54,4 @@ public class GenericSortingTest {
         return ((end - start) / 1000);
     }
 
-    private int[] randomIntList(int size, long seed) {
-        Random random = new Random(seed);
-        int[] randomElements = new int[size];
-
-        for (int i = 0; i < size; i++) {
-            randomElements[i] = Math.abs(random.nextInt());
-        }
-
-        return randomElements;
-    }
 }
