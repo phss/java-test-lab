@@ -7,6 +7,7 @@ import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
 
 public class SorterTest {
 
@@ -14,18 +15,20 @@ public class SorterTest {
     public void sortSmallList() throws Exception {
         int[] elements = {4, 5, 1, 9, 10, 7, 8, 2, 3, 6};
 
-        Sorter.inplaceSort(elements);
+        double elapsedTime = inplaceSortAndTime(elements);
 
         assertThat(elements, equalTo(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}));
+        assertThat(elapsedTime, lessThan(1.0));
     }
 
     @Test
     public void sortListWithDuplicates() throws Exception {
         int[] elements = {4, 5, 1, 1, 5, 7, 3, 2, 3, 6};
 
-        Sorter.inplaceSort(elements);
+        double elapsedTime = inplaceSortAndTime(elements);
 
         assertThat(elements, equalTo(new int[] {1, 1, 2, 3, 3, 4, 5, 5, 6, 7}));
+        assertThat(elapsedTime, lessThan(1.0));
     }
 
     @Ignore
@@ -34,11 +37,20 @@ public class SorterTest {
         int listSize = 100000000;
         int[] elements = randomIntList(listSize, 30071979);
 
-        Sorter.inplaceSort(elements);
+
+        double elapsedTime = inplaceSortAndTime(elements);
 
         assertThat(elements[0], equalTo(9));
         assertThat(elements[listSize / 2], equalTo(1073753667));
         assertThat(elements[listSize - 1], equalTo(2147483647));
+        assertThat(elapsedTime, lessThan(15.0));
+    }
+
+    private double inplaceSortAndTime(int[] elements) {
+        long start = System.currentTimeMillis();
+        Sorter.inplaceSort(elements);
+        long end = System.currentTimeMillis();
+        return ((end - start) / 1000);
     }
 
     private int[] randomIntList(int size, long seed) {
