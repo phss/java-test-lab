@@ -14,4 +14,17 @@ public class Utils {
 
         return randomElements;
     }
+
+    public static int[] randomOrderedIntList(int size, int seed) {
+        Random random = new Random(seed);
+        int[] randomElements = new int[size];
+        int lastElement = 0;
+
+        for (int i = 0; i < size; i++) {
+            randomElements[i] = Math.abs(random.nextInt(50)) + lastElement;
+            lastElement = randomElements[i];
+        }
+
+        return randomElements;
+    }
 }
