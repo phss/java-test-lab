@@ -11,10 +11,10 @@ public class BinarySearch implements SearchingAlgorithm {
         int middleIndex = (lowIndex + highIndex) / 2;
         int middleElement = orderedElements[middleIndex];
 
-        if (middleElement == element) {
-            return middleIndex;
-        } else if (lowIndex > highIndex) {
+        if (lowIndex > highIndex) {
             return -1;
+        } else if (middleElement == element) {
+            return middleIndex;
         } else if (middleElement > element) {
             return binarySearch(orderedElements, element, lowIndex, middleIndex - 1);
         } else {
