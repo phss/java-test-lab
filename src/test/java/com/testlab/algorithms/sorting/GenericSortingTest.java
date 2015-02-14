@@ -9,7 +9,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
-public class SorterTest {
+public class GenericSortingTest {
+
+    private final SortingAlgorithm sorter = new CheatingSort();
 
     @Test
     public void sortSmallList() throws Exception {
@@ -48,7 +50,7 @@ public class SorterTest {
 
     private double inplaceSortAndTime(int[] elements) {
         long start = System.currentTimeMillis();
-        Sorter.inplaceSort(elements);
+        sorter.inplaceSort(elements);
         long end = System.currentTimeMillis();
         return ((end - start) / 1000);
     }
