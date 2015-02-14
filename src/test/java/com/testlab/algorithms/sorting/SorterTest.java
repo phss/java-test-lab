@@ -1,6 +1,9 @@
 package com.testlab.algorithms.sorting;
 
+import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.Random;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -23,5 +26,29 @@ public class SorterTest {
         Sorter.inplaceSort(elements);
 
         assertThat(elements, equalTo(new int[] {1, 1, 2, 3, 3, 4, 5, 5, 6, 7}));
+    }
+
+    @Ignore
+    @Test
+    public void sortLargeRandomList() throws Exception {
+        int listSize = 100000000;
+        int[] elements = randomIntList(listSize, 30071979);
+
+        Sorter.inplaceSort(elements);
+
+        assertThat(elements[0], equalTo(9));
+        assertThat(elements[listSize / 2], equalTo(1073753667));
+        assertThat(elements[listSize - 1], equalTo(2147483647));
+    }
+
+    private int[] randomIntList(int size, long seed) {
+        Random random = new Random(seed);
+        int[] randomElements = new int[size];
+
+        for (int i = 0; i < size; i++) {
+            randomElements[i] = Math.abs(random.nextInt());
+        }
+
+        return randomElements;
     }
 }
