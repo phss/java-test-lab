@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.lessThan;
 
 public class GenericSearcherTest {
 
-    private final SearchingAlgorithm searcher = new BinarySearch();
+    private final SearchingAlgorithm searcher = new SequentialSearch();
 
     @Test
     public void noElementFound() {
@@ -30,7 +30,7 @@ public class GenericSearcherTest {
         assertThat(index, equalTo(5));
     }
 
-//    @Ignore
+    @Ignore
     @Test
     public void findIndexInLargeOrderedList() {
         int[] elements = Utils.randomOrderedIntList(100000000, 30071979);
@@ -43,7 +43,7 @@ public class GenericSearcherTest {
         assertThat(elapsed, lessThan(1L));
     }
 
-//    @Ignore
+    @Ignore
     @Test
     public void noElementFoundInLargeList() {
         int[] elements = Utils.randomOrderedIntList(100000000, 30071979);
