@@ -1,8 +1,5 @@
 package com.testlab.algorithms.searching;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class SequentialSearch implements SearchingAlgorithm {
     @Override
     public int findIndex(int[] orderedElements, int element) {
