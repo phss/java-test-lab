@@ -5,9 +5,8 @@ import java.util.ArrayList;
 public class CircularListBasedQueue<T> implements Queue<T> {
 
     private final ArrayList<T> array = new ArrayList<>();
-    private int headIndex = -1;
-    private int tailIndex = -1;
-    private int counts = 0;
+    private int headIndex = 0;
+    private int nextElementIndex = 0;
 
     public CircularListBasedQueue(int maxSize) {
         initializeArray(maxSize);
@@ -15,12 +14,8 @@ public class CircularListBasedQueue<T> implements Queue<T> {
 
     @Override
     public void enqueue(T element) {
-        counts++;
-        incrementTail();
-        array.set(tailIndex, element);
-        if (headIndex < 0) {
-            headIndex = 0;
-        }
+        array.set(nextElementIndex, element);
+        incrementNextElement();
     }
 
     @Override
@@ -28,7 +23,6 @@ public class CircularListBasedQueue<T> implements Queue<T> {
         if (isEmpty()) {
             return null;
         }
-        counts--;
 
         T headElement = getAndRemoveFromHead();
         incrementHead();
@@ -37,7 +31,7 @@ public class CircularListBasedQueue<T> implements Queue<T> {
 
     @Override
     public boolean isEmpty() {
-        return counts == 0;
+        return headIndex == nextElementIndex;
     }
 
     private void initializeArray(int maxSize) {
@@ -46,8 +40,8 @@ public class CircularListBasedQueue<T> implements Queue<T> {
         }
     }
 
-    private void incrementTail() {
-        tailIndex = (tailIndex + 1) % array.size();
+    private void incrementNextElement() {
+        nextElementIndex = (nextElementIndex + 1) % array.size();
     }
 
     private void incrementHead() {
