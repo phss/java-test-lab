@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.nullValue;
 public class QueueTest {
 
 
-    private final Queue<Integer> queue = new CircularListBasedQueue<>(4);
+    private final Queue<Integer> queue = new TwoStacksBasedQueue<>(new CheatingStack<>(), new ArrayListBasedStack<>());
 
     @Test
     public void dequeuesNullWhenQueueHasNoElements() {
