@@ -12,13 +12,16 @@ public class CircularListBasedQueue<T> implements Queue<T> {
 
     public CircularListBasedQueue(int maxSize) {
         this.maxSize = maxSize;
+        for (int i = 0; i < maxSize; i++) {
+            array.add(null);
+        }
     }
 
     @Override
     public void enqueue(T element) {
         counts++;
         tailIndex = (tailIndex + 1) % maxSize;
-        array.add(tailIndex, element);
+        array.set(tailIndex, element);
         if (headIndex < 0) {
             headIndex = 0;
         }
