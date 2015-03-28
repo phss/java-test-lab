@@ -11,10 +11,10 @@ public class CheatingStack<T> implements Stack<T> {
 
     @Override
     public T pop() {
-        if (!realStack.empty()) {
-            return realStack.pop();
+        if (isEmpty()) {
+            return null;
         }
-        return null;
+        return realStack.pop();
     }
 
     @Override

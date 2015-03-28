@@ -9,7 +9,7 @@ import static org.hamcrest.Matchers.nullValue;
 
 public class StackTest {
 
-    private final Stack<Integer> stack = new CheatingStack<>();
+    private final Stack<Integer> stack = new ArrayListBasedStack<>();
 
     @Test
     public void popsNullWhenStackHasNoElements() {
