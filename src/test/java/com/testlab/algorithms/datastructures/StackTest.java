@@ -13,6 +13,7 @@ public class StackTest {
 
     @Test
     public void popsNullWhenStackHasNoElements() {
+        assertThat(stack.isEmpty(), is(true));
         assertThat(stack.pop(), is(nullValue()));
     }
 
@@ -21,6 +22,7 @@ public class StackTest {
         stack.push(1); stack.push(2); stack.push(3);
         stack.pop(); stack.pop(); stack.pop();
 
+        assertThat(stack.isEmpty(), is(true));
         assertThat(stack.pop(), is(nullValue()));
     }
 
@@ -28,6 +30,7 @@ public class StackTest {
     public void popsRecentlyPushedElement() {
         stack.push(42);
 
+        assertThat(stack.isEmpty(), is(false));
         assertThat(stack.pop(), equalTo(42));
     }
 }

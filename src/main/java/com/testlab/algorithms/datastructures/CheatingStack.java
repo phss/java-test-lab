@@ -16,4 +16,9 @@ public class CheatingStack<T> implements Stack<T> {
         }
         return null;
     }
+
+    @Override
+    public boolean isEmpty() {
+        return realStack.isEmpty();
+    }
 }
