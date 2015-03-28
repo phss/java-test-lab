@@ -45,12 +45,22 @@ public class QueueTest {
     }
 
     @Test
-    public void mixOfPushesAndPops() {
+    public void mixOfQueuesAndDequeues() {
         queue.enqueue(1); queue.enqueue(2); queue.dequeue(); queue.enqueue(3); queue.enqueue(4);
 
         assertThat(queue.dequeue(), equalTo(2));
         assertThat(queue.dequeue(), equalTo(3));
         assertThat(queue.dequeue(), equalTo(4));
+    }
+
+    @Test
+    public void removeEverythingAndThenAddMore() {
+        queue.enqueue(1); queue.enqueue(2); queue.enqueue(3);
+        queue.dequeue(); queue.dequeue(); queue.dequeue();
+        queue.enqueue(4); queue.enqueue(5);
+
+        assertThat(queue.dequeue(), equalTo(4));
+        assertThat(queue.dequeue(), equalTo(5));
     }
 
 }
