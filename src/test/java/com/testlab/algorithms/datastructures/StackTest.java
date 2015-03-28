@@ -33,4 +33,22 @@ public class StackTest {
         assertThat(stack.isEmpty(), is(false));
         assertThat(stack.pop(), equalTo(42));
     }
+
+    @Test
+    public void popsElementsInRightOrder() {
+        stack.push(1); stack.push(2); stack.push(3);
+
+        assertThat(stack.pop(), equalTo(3));
+        assertThat(stack.pop(), equalTo(2));
+        assertThat(stack.pop(), equalTo(1));
+    }
+
+    @Test
+    public void mixOfPushesAndPops() {
+        stack.push(1); stack.push(2); stack.pop(); stack.push(3); stack.push(4);
+
+        assertThat(stack.pop(), equalTo(4));
+        assertThat(stack.pop(), equalTo(3));
+        assertThat(stack.pop(), equalTo(1));
+    }
 }
