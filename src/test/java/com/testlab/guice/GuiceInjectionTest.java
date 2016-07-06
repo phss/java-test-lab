@@ -2,6 +2,8 @@ package com.testlab.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.name.Names;
 import com.testlab.guice.services.SimpleGetterService;
 import org.junit.Test;
 
@@ -16,5 +18,13 @@ public class GuiceInjectionTest {
         SimpleGetterService service = injector.getInstance(SimpleGetterService.class);
 
         assertThat(service.getSomeString(), equalTo("I am hardcoded!!!"));
+    }
+
+    @Test
+    public void loadNamedService() {
+        Injector injector = Guice.createInjector(new BasicModule());
+        SimpleGetterService service = injector.getInstance(Key.get(SimpleGetterService.class, Names.named("special")));
+
+        assertThat(service.getSomeString(), equalTo("I am also hardcoded!!!"));
     }
 }
