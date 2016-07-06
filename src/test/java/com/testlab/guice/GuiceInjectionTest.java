@@ -1,5 +1,6 @@
 package com.testlab.guice;
 
+import com.google.inject.ConfigurationException;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
@@ -26,5 +27,11 @@ public class GuiceInjectionTest {
         SimpleGetterService service = injector.getInstance(Key.get(SimpleGetterService.class, Names.named("special")));
 
         assertThat(service.getSomeString(), equalTo("I am also hardcoded!!!"));
+    }
+
+    @Test(expected = ConfigurationException.class)
+    public void throwsExceptionIfCannotFindNamedService() {
+        Injector injector = Guice.createInjector(new BasicModule());
+        injector.getInstance(Key.get(SimpleGetterService.class, Names.named("nosuchservice")));
     }
 }
