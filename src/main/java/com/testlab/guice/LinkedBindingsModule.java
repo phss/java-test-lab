@@ -6,7 +6,7 @@ import com.testlab.guice.services.AnotherHardcodedGetterService;
 import com.testlab.guice.services.HardcodedGetterService;
 import com.testlab.guice.services.SimpleGetterService;
 
-public class BasicModule extends AbstractModule {
+public class LinkedBindingsModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(SimpleGetterService.class)

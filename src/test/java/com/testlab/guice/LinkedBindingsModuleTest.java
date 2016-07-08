@@ -11,11 +11,11 @@ import org.junit.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class GuiceInjectionTest {
+public class LinkedBindingsModuleTest {
 
     @Test
     public void loadSingleInjectedService() {
-        Injector injector = Guice.createInjector(new BasicModule());
+        Injector injector = Guice.createInjector(new LinkedBindingsModule());
         SimpleGetterService service = injector.getInstance(SimpleGetterService.class);
 
         assertThat(service.getSomeString(), equalTo("I am hardcoded!!!"));
@@ -23,7 +23,7 @@ public class GuiceInjectionTest {
 
     @Test
     public void loadNamedService() {
-        Injector injector = Guice.createInjector(new BasicModule());
+        Injector injector = Guice.createInjector(new LinkedBindingsModule());
         SimpleGetterService service = injector.getInstance(Key.get(SimpleGetterService.class, Names.named("special")));
 
         assertThat(service.getSomeString(), equalTo("I am also hardcoded!!!"));
@@ -31,7 +31,7 @@ public class GuiceInjectionTest {
 
     @Test(expected = ConfigurationException.class)
     public void throwsExceptionIfCannotFindNamedService() {
-        Injector injector = Guice.createInjector(new BasicModule());
+        Injector injector = Guice.createInjector(new LinkedBindingsModule());
         injector.getInstance(Key.get(SimpleGetterService.class, Names.named("nosuchservice")));
     }
 }
