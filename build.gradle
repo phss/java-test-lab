@@ -13,7 +13,8 @@ repositories {
 
 dependencies {
     compile(
-            'com.google.inject:guice:3.0'
+            'com.google.inject:guice:3.0',
+            'com.netflix.hystrix:hystrix-core:1.5.3'
     )
     testCompile(
             'junit:junit-dep:4.10',
