@@ -5,6 +5,15 @@ import java.util.Map;
 
 public class WordFrequency {
     public Map<String, Integer> calculateFor(String text) {
-        return new HashMap<>();
+        String[] words = text.split("\\s+");
+        HashMap<String, Integer> result = new HashMap<>();
+
+        for (String word : words) {
+            if (!word.equals("")) {
+                result.put(word, 1);
+            }
+        }
+
+        return result;
     }
 }
