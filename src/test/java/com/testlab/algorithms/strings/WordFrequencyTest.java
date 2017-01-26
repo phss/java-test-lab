@@ -37,5 +37,17 @@ public class WordFrequencyTest {
         assertThat(result, hasEntry("it", 1));
     }
 
+    @Test
+    public void frequencyForMultipleRepeatedWords() {
+        Map<String, Integer> result = wordFrequency.calculateFor("blah blah blah and that's it and that");
+
+        assertThat(result.size(), is(5));
+        assertThat(result, hasEntry("blah", 3));
+        assertThat(result, hasEntry("and", 2));
+        assertThat(result, hasEntry("that's", 1));
+        assertThat(result, hasEntry("it", 1));
+        assertThat(result, hasEntry("that", 1));
+    }
+
 
 }

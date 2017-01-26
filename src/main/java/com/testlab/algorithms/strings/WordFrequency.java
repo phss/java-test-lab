@@ -10,7 +10,11 @@ public class WordFrequency {
 
         for (String word : words) {
             if (!word.equals("")) {
-                result.put(word, 1);
+                if (result.containsKey(word)) {
+                    result.put(word, result.get(word) + 1);
+                } else {
+                    result.put(word, 1);
+                }
             }
         }
 
