@@ -50,4 +50,19 @@ public class WordFrequencyTest {
     }
 
 
+    @Test
+    public void ignoresCase() {
+        Map<String, Integer> result = wordFrequency.calculateFor("ignore IGNORE iGnOrE");
+
+        assertThat(result.size(), is(1));
+        assertThat(result, hasEntry("ignore", 3));
+    }
+
+    @Test
+    public void ignoresExtraWhitespace() {
+        Map<String, Integer> result = wordFrequency.calculateFor(" space    \n                          space    ");
+
+        assertThat(result.size(), is(1));
+        assertThat(result, hasEntry("space", 2));
+    }
 }
