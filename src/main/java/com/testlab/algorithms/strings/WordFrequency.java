@@ -8,8 +8,8 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 
-public class WordFrequency {
-    public Map<String, Integer> calculateFor(String text) {
+class WordFrequency {
+    Map<String, Integer> calculateFor(String text) {
         List<String> words = Arrays.asList(text.toLowerCase().split("\\s+"));
 
         return words.stream()
